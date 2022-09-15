@@ -19,14 +19,14 @@ app.get("/", function(req, res) {
     res.send("Funcionou!")
 })
 
-// app.use(bodyPaser.urlencoded({ extended: true }));
-// app.use(bodyPaser.json());
+app.use(bodyPaser.urlencoded({ extended: true }));
+app.use(bodyPaser.json());
+app.use(handle404Error);
+app.use(handleError);
 // app.use('/api/usuario', usuarioRoute);
 // app.use('/api/cliente', clienteRoute);
 // app.use('/api/sorteio', sorteioRoute);
 // app.use('/api/bilhete', bilheteRoute);
-// app.use(handle404Error);
-// app.use(handleError);
 
 app.listen(port, () => {
   console.log("rodando na porta 3000");
