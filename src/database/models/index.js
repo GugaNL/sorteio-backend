@@ -14,10 +14,13 @@ const db = {};
 // } else {
 //   sequelize = new Sequelize(config.database, config.username, config.password, config);
 // }
-const sequelize = new Sequelize('heroku_cf29b3a264c0669', 'b9a7891991700c', '92190dc9', {
-  host: 'us-cdbr-east-06.cleardb.net',
-  dialect: 'mysql'
-});
+
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+// const sequelize = new Sequelize('heroku_cf29b3a264c0669', 'b9a7891991700c', '92190dc9', {
+//   host: 'us-cdbr-east-06.cleardb.net',
+//   dialect: 'mysql'
+// });
 
 fs
   .readdirSync(__dirname)
