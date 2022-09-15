@@ -10,13 +10,13 @@ const create = async function (req, res) {
     //   throw createError(422, { errors: errors.array() });
     // }
 
-    const response = await usuarioService.create(req.body);
+    // const response = await usuarioService.create(req.body);
 
-    if (response && response.message) {
-      throw response;
-    }
+    // if (response && response.message) {
+    //   throw response;
+    // }
 
-    res.send(response);
+    // res.send(response);
   } catch (error) {
     
   }
