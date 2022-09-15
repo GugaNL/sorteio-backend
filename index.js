@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const router = express.Router();
-// const usuarioController = require("./src/controllers/usuario.controller");
+const usuarioController = require("./src/controllers/usuario.controller");
 
 
 const bodyPaser = require("body-parser");

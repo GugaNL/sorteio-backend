@@ -1,14 +1,14 @@
 const usuarioService = require("../services/usuario.service");
-const { validationResult } = require("express-validator");
-const createError = require("http-errors");
+// const { validationResult } = require("express-validator");
+// const createError = require("http-errors");
 
-const create = async function (req, res, next) {
+const create = async function (req, res) {
   try {
-    const errors = validationResult(req);
+    // const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      throw createError(422, { errors: errors.array() });
-    }
+    // if (!errors.isEmpty()) {
+    //   throw createError(422, { errors: errors.array() });
+    // }
 
     const response = await usuarioService.create(req.body);
 
@@ -18,110 +18,130 @@ const create = async function (req, res, next) {
 
     res.send(response);
   } catch (error) {
-    return next(error);
+    
   }
 };
 
-const login = async function (req, res, next) {
-  try {
-    const errors = validationResult(req);
+// const create = async function (req, res, next) {
+//   try {
+//     const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      throw createError(422, { errors: errors.array() });
-    }
+//     if (!errors.isEmpty()) {
+//       throw createError(422, { errors: errors.array() });
+//     }
 
-    const response = await usuarioService.login(req.body);
+//     const response = await usuarioService.create(req.body);
 
-    if (response && response.message) {
-      throw response;
-    }
+//     if (response && response.message) {
+//       throw response;
+//     }
 
-    res.send(response);
-  } catch (error) {
-    return next(error);
-  }
-};
+//     res.send(response);
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
-const listUsers = async function (req, res, next) {
-  try {
-    const response = await usuarioService.listUsers(req.body);
+// const login = async function (req, res, next) {
+//   try {
+//     const errors = validationResult(req);
 
-    res.send(response);
-  } catch (error) {
-    return next(error);
-  }
-};
+//     if (!errors.isEmpty()) {
+//       throw createError(422, { errors: errors.array() });
+//     }
 
-const findUser = async function (req, res, next) {
-  try {
-    const errors = validationResult(req);
+//     const response = await usuarioService.login(req.body);
 
-    if (!errors.isEmpty()) {
-      throw createError(422, { errors: errors.array() });
-    }
+//     if (response && response.message) {
+//       throw response;
+//     }
 
-    const response = await usuarioService.findUser(req.params.id);
+//     res.send(response);
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
-    if (response && response.message) {
-      throw response;
-    }
+// const listUsers = async function (req, res, next) {
+//   try {
+//     const response = await usuarioService.listUsers(req.body);
 
-    res.send(response);
-  } catch (error) {
-    return next(error);
-  }
-};
+//     res.send(response);
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
-const updateUser = async function (req, res, next) {
-  try {
-    const errors = validationResult(req);
+// const findUser = async function (req, res, next) {
+//   try {
+//     const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      throw createError(422, { errors: errors.array() });
-    }
+//     if (!errors.isEmpty()) {
+//       throw createError(422, { errors: errors.array() });
+//     }
 
-    const response = await usuarioService.updateUser(
-      {
-        senha: req.body.senha,
-      },
-      req.params.id
-    );
+//     const response = await usuarioService.findUser(req.params.id);
 
-    if (response && response.message) {
-      throw response;
-    }
+//     if (response && response.message) {
+//       throw response;
+//     }
 
-    res.send(response);
-  } catch (error) {
-    return next(error);
-  }
-};
+//     res.send(response);
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
-const deleteUser = async function (req, res, next) {
-  try {
-    const errors = validationResult(req);
+// const updateUser = async function (req, res, next) {
+//   try {
+//     const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      throw createError(422, { errors: errors.array() });
-    }
+//     if (!errors.isEmpty()) {
+//       throw createError(422, { errors: errors.array() });
+//     }
 
-    const response = await usuarioService.deleteUser(req.params.id);
+//     const response = await usuarioService.updateUser(
+//       {
+//         senha: req.body.senha,
+//       },
+//       req.params.id
+//     );
 
-    if (response && response.message) {
-      throw response;
-    }
+//     if (response && response.message) {
+//       throw response;
+//     }
 
-    res.send(response);
-  } catch (error) {
-    return next(error);
-  }
-};
+//     res.send(response);
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
+
+// const deleteUser = async function (req, res, next) {
+//   try {
+//     const errors = validationResult(req);
+
+//     if (!errors.isEmpty()) {
+//       throw createError(422, { errors: errors.array() });
+//     }
+
+//     const response = await usuarioService.deleteUser(req.params.id);
+
+//     if (response && response.message) {
+//       throw response;
+//     }
+
+//     res.send(response);
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
 module.exports = {
   create,
-  login,
-  listUsers,
-  findUser,
-  updateUser,
-  deleteUser,
+  // login,
+  // listUsers,
+  // findUser,
+  // updateUser,
+  // deleteUser,
 };
