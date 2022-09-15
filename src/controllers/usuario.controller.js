@@ -2,7 +2,7 @@ const usuarioService = require("../services/usuario.service");
 const { validationResult } = require("express-validator");
 const createError = require("http-errors");
 
-create = async function (req, res, next) {
+const create = async function (req, res, next) {
   try {
     const errors = validationResult(req);
 
@@ -22,7 +22,7 @@ create = async function (req, res, next) {
   }
 };
 
-login = async function (req, res, next) {
+const login = async function (req, res, next) {
   try {
     const errors = validationResult(req);
 
@@ -42,7 +42,7 @@ login = async function (req, res, next) {
   }
 };
 
-listUsers = async function (req, res, next) {
+const listUsers = async function (req, res, next) {
   try {
     const response = await usuarioService.listUsers(req.body);
 
@@ -52,7 +52,7 @@ listUsers = async function (req, res, next) {
   }
 };
 
-findUser = async function (req, res, next) {
+const findUser = async function (req, res, next) {
   try {
     const errors = validationResult(req);
 
@@ -72,7 +72,7 @@ findUser = async function (req, res, next) {
   }
 };
 
-updateUser = async function (req, res, next) {
+const updateUser = async function (req, res, next) {
   try {
     const errors = validationResult(req);
 
@@ -97,7 +97,7 @@ updateUser = async function (req, res, next) {
   }
 };
 
-deleteUser = async function (req, res, next) {
+const deleteUser = async function (req, res, next) {
   try {
     const errors = validationResult(req);
 
