@@ -4,7 +4,9 @@ const usuarioController = require("../controllers/usuario.controller");
 //const { verifyJWT } = require("../middlewares/authorizator");
 //const usuarioValidator = require("../validators/usuario.validator");
 
-router.post("/novo", usuarioController.create);
+router.post("/novo", function (req, res) {
+    res.send("Wiki home page");
+});
 // router.post("/novo", usuarioValidator.create(), usuarioController.create);
 // router.post("/login", usuarioValidator.login(), usuarioController.login);
 // router.get("/lista", verifyJWT, usuarioController.listUsers);
