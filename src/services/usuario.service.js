@@ -18,84 +18,84 @@ const create = async function (usuario) {
   return usuarioCriado;
 };
 
-// const listUsers = async function () {
-//   const usuarios = await usuarioRepository.listUsers();
-//   return usuarios;
-// };
+const listUsers = async function () {
+  const usuarios = await usuarioRepository.listUsers();
+  return usuarios;
+};
 
-// const findUser = async function (id) {
-//   const usuario = await usuarioRepository.findUser(id);
+const findUser = async function (id) {
+  const usuario = await usuarioRepository.findUser(id);
 
-//   if (!usuario) {
-//     return createError(404, "Usuário não encontrado");
-//   }
+  if (!usuario) {
+    return createError(404, "Usuário não encontrado");
+  }
 
-//   return usuario;
-// };
+  return usuario;
+};
 
-// const updateUser = async function (usuario, id) {
-//   const userExists = await usuarioRepository.findUser(id);
+const updateUser = async function (usuario, id) {
+  const userExists = await usuarioRepository.findUser(id);
 
-//   if (!userExists) {
-//     return createError(404, "Usuário não existe");
-//   }
+  if (!userExists) {
+    return createError(404, "Usuário não existe");
+  }
 
-//   await usuarioRepository.updateUser(usuario, id);
+  await usuarioRepository.updateUser(usuario, id);
 
-//   return await usuarioRepository.findUser(id);
-// };
+  return await usuarioRepository.findUser(id);
+};
 
-// const deleteUser = async function (id) {
-//   const usuario = await usuarioRepository.findUser(id);
+const deleteUser = async function (id) {
+  const usuario = await usuarioRepository.findUser(id);
 
-//   if (!usuario) {
-//     return createError(404, "Usuário não encontrado");
-//   }
+  if (!usuario) {
+    return createError(404, "Usuário não encontrado");
+  }
 
-//   await usuarioRepository.deleteUser(id);
+  await usuarioRepository.deleteUser(id);
 
-//   return usuario;
-// };
+  return usuario;
+};
 
-// const login = async function (usuario) {
-//   const userLogin = await usuarioRepository.findUserToValidate({
-//     login: usuario.login,
-//   });
+const login = async function (usuario) {
+  const userLogin = await usuarioRepository.findUserToValidate({
+    login: usuario.login,
+  });
 
-//   if (!userLogin) {
-//     return createError(401, "Usuário inválido");
-//   }
+  if (!userLogin) {
+    return createError(401, "Usuário inválido");
+  }
 
-//   const comparePassword = await bcrypt.compare(usuario.senha, userLogin.senha);
+  const comparePassword = await bcrypt.compare(usuario.senha, userLogin.senha);
 
-//   if (!comparePassword) {
-//     return createError(401, "Usuário inválido");
-//   }
+  if (!comparePassword) {
+    return createError(401, "Usuário inválido");
+  }
 
-//   const token = sign(
-//     {
-//       id: userLogin.id,
-//     },
-//     process.env.SECRET,
-//     {
-//       expiresIn: "5h",
-//     }
-//   );
+  const token = sign(
+    {
+      id: userLogin.id,
+    },
+    process.env.SECRET,
+    {
+      expiresIn: "5h",
+    }
+  );
 
-//   delete userLogin.senha;
+  delete userLogin.senha;
 
-//   return {
-//     auth: true,
-//     usuario: userLogin,
-//     token
-//   };
-// };
+  return {
+    auth: true,
+    usuario: userLogin,
+    token
+  };
+};
 
 module.exports = {
   create,
-  // login,
-  // listUsers,
-  // findUser,
-  // updateUser,
-  // deleteUser,
+  login,
+  listUsers,
+  findUser,
+  updateUser,
+  deleteUser,
 };
