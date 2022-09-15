@@ -4,7 +4,7 @@ const bodyPaser = require("body-parser");
 const port = process.env.PORT || 3000;
 
 const handle404Error = require("./src/middlewares/handle404Error");
-// const usuarioRoute = require("./src/routers/usuario.route");
+const usuarioRoute = require("./src/routers/usuario.route");
 // const clienteRoute = require("./src/routers/cliente.route");
 // const sorteioRoute = require("./src/routers/sorteio.route");
 // const bilheteRoute = require("./src/routers/bilhete.route");
