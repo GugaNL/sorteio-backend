@@ -30,6 +30,9 @@ module.exports = {
           key: 'id'
         }
       },
+      valorBilhete: {
+        type: Sequelize.INTEGER
+      },
       totalBilhetes: {
         type: Sequelize.INTEGER
       },

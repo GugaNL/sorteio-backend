@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       data: DataTypes.DATE,
       premio: DataTypes.STRING,
       foto: DataTypes.STRING,
+      valorBilhete: DataTypes.INTEGER,
       totalBilhetes: DataTypes.INTEGER,
       status: DataTypes.STRING
     },
