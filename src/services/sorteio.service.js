@@ -4,6 +4,9 @@ require("dotenv").config();
 const createError = require("http-errors");
 
 const create = async function (sorteio) {
+  if (!sorteio.status) {
+    sorteio.status = 'ativo'
+  }
   const sorteioCriado = await sorteioRepository.create(sorteio);
   return sorteioCriado;
 };
