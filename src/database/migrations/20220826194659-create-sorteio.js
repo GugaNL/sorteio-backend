@@ -31,7 +31,7 @@ module.exports = {
         }
       },
       valorBilhete: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(20, 2)
       },
       totalBilhetes: {
         type: Sequelize.INTEGER
