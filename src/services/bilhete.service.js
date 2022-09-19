@@ -20,6 +20,10 @@ const create = async function (bilhete) {
     return createError(409, "Bilhete já comprado");
   }
 
+  if (bilhete.numero > sorteioExists.totalBilhetes) {
+    return createError(409, "Bilhete inválido");
+  }
+
   const clienteExists = await clienteRepository.find(bilhete.comprador);
 
   if (!clienteExists) {
