@@ -36,6 +36,9 @@ module.exports = {
       totalBilhetes: {
         type: Sequelize.INTEGER
       },
+      bilhetesVendidos: {
+        type: Sequelize.INTEGER
+      },
       status: {
         type: Sequelize.STRING
       },

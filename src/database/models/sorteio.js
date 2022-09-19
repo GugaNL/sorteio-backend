@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       foto: DataTypes.STRING,
       valorBilhete: DataTypes.DECIMAL(20, 2),
       totalBilhetes: DataTypes.INTEGER,
+      bilhetesVendidos: DataTypes.INTEGER,
       status: DataTypes.STRING
     },
     {

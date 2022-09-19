@@ -7,6 +7,7 @@ const create = async function (sorteio) {
   if (!sorteio.status) {
     sorteio.status = 'ativo'
   }
+  sorteio.bilhetesVendidos = 0;
   const sorteioCriado = await sorteioRepository.create(sorteio);
   return sorteioCriado;
 };

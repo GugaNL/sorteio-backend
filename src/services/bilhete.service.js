@@ -27,6 +27,10 @@ const create = async function (bilhete) {
   }
 
   const bilheteCriado = await bilheteRepository.create(bilhete);
+
+  const bilhetesVendidos = sorteioExists.bilhetesVendidos + 1;
+  await sorteioRepository.update({bilhetesVendidos: bilhetesVendidos}, bilhete.sorteioId);
+  
   return bilheteCriado;
 };
 
