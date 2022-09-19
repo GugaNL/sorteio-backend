@@ -16,7 +16,7 @@ const create = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, sorteio: response });
   } catch (error) {
     return next(error);
   }
@@ -26,7 +26,7 @@ const list = async function (req, res, next) {
   try {
     const response = await sorteioService.list(req.body);
 
-    res.send(response);
+    res.send({ success: true, sorteios: response});
   } catch (error) {
     return next(error);
   }
@@ -46,7 +46,7 @@ const find = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, sorteio: response});
   } catch (error) {
     return next(error);
   }
@@ -66,7 +66,7 @@ const update = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, sorteio: response });
   } catch (error) {
     return next(error);
   }
@@ -86,7 +86,7 @@ const remove = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, sorteio: response });
   } catch (error) {
     return next(error);
   }

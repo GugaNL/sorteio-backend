@@ -16,7 +16,7 @@ const create = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, bilhete: response });
   } catch (error) {
     return next(error);
   }
@@ -26,7 +26,7 @@ const list = async function (req, res, next) {
   try {
     const response = await bilheteService.list(req.body);
 
-    res.send(response);
+    res.send({ success: true, bilhetes: response });
   } catch (error) {
     return next(error);
   }
@@ -36,7 +36,7 @@ const listWhere = async function (req, res, next) {
   try {
     const response = await bilheteService.listWhere(req.body.sorteioId);
 
-    res.send(response);
+    res.send({ success: true, bilhete: response });
   } catch (error) {
     return next(error);
   }
@@ -56,7 +56,7 @@ const find = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, bilhete: response });
   } catch (error) {
     return next(error);
   }
@@ -83,7 +83,7 @@ const update = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, bilhete: response });
   } catch (error) {
     return next(error);
   }
@@ -103,7 +103,7 @@ const remove = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, bilhete: response });
   } catch (error) {
     return next(error);
   }

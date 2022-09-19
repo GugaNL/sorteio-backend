@@ -16,7 +16,7 @@ const create = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, cliente: response });
   } catch (error) {
     return next(error);
   }
@@ -36,7 +36,7 @@ const login = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, cliente: response });
   } catch (error) {
     return next(error);
   }
@@ -46,7 +46,7 @@ const list = async function (req, res, next) {
   try {
     const response = await clienteService.list(req.body);
 
-    res.send(response);
+    res.send({ success: true, clientes: response });
   } catch (error) {
     return next(error);
   }
@@ -66,7 +66,7 @@ const find = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, cliente: response });
   } catch (error) {
     return next(error);
   }
@@ -86,7 +86,7 @@ const update = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, cliente: response });
   } catch (error) {
     return next(error);
   }
@@ -106,7 +106,7 @@ const remove = async function (req, res, next) {
       throw response;
     }
 
-    res.send(response);
+    res.send({ success: true, cliente: response });
   } catch (error) {
     return next(error);
   }
