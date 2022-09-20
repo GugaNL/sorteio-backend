@@ -29,13 +29,13 @@ const listWhere = async function (id, where) {
 };
 
 const find = async function (id) {
-  const bilhete = await sorteioRepository.find(id);
+  const sorteio = await sorteioRepository.find(id);
 
-  if (!bilhete) {
+  if (!sorteio) {
     return createError(404, "Sorteio não encontrado");
   }
 
-  return bilhete;
+  return sorteio;
 };
 
 const update = async function (sorteio, id) {
