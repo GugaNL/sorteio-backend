@@ -11,6 +11,9 @@ module.exports = {
       numero: {
         type: Sequelize.INTEGER
       },
+      status: {
+        type: Sequelize.STRING
+      },
       sorteioId: {
         type: Sequelize.INTEGER,
         references: {

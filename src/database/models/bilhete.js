@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   Bilhete.init(
     {
       numero: DataTypes.INTEGER,
+      status: DataTypes.STRING
     },
     {
       sequelize,
