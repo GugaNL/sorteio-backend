@@ -34,7 +34,7 @@ const list = async function (req, res, next) {
 
 const listWhere = async function (req, res, next) {
   try {
-    const response = await bilheteService.listWhere(req.body.sorteioId);
+    const response = await bilheteService.listWhere(req.body);
 
     res.send({ success: true, bilhete: response });
   } catch (error) {
