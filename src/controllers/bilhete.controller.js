@@ -34,9 +34,16 @@ const list = async function (req, res, next) {
 
 const listWhere = async function (req, res, next) {
   try {
-    const response = await bilheteService.listWhere(req.body);
+    const parameters = req.query;
+    const page = parameters.page ? parseInt(parameters.page) : 1;
+    const limit = parameters.limit ? parseInt(parameters.limit) : 2;
 
-    res.send({ success: true, bilhete: response });
+    delete parameters.page;
+    delete parameters.limit;
+
+    const response = await bilheteService.listWhere(parameters, page, limit);
+
+    res.send({ success: true, bilhetes: response });
   } catch (error) {
     return next(error);
   }

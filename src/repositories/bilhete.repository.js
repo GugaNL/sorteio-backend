@@ -10,9 +10,12 @@ const list = async function () {
   return bilhetes;
 };
 
-const listWhere = async function (where) {
+const listWhere = async function (where, page = 1, limit = 10) {
+  const skip = (page - 1) * limit;
   const bilhetes = await Bilhete.findAll({
     where,
+    offset: skip,
+    limit
   });
 
   return bilhetes;

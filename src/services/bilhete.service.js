@@ -43,14 +43,14 @@ const list = async function () {
   return bilhetes;
 };
 
-const listWhere = async function (bilhete) {
+const listWhere = async function (bilhete, page, limit) {
   const sorteioExists = await sorteioRepository.find(bilhete.sorteioId);
 
   if (!sorteioExists) {
     return createError(409, "Sorteio não encontrado");
   }
 
-  const bilhetes = await bilheteRepository.listWhere(bilhete);
+  const bilhetes = await bilheteRepository.listWhere(bilhete, page, limit);
   return bilhetes;
 };
 
