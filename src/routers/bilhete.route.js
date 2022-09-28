@@ -8,8 +8,7 @@ router.post("/novo", bilheteController.create);
 router.get("/lista", verifyJWT, bilheteController.list);
 router.get("/listaWhere", bilheteController.listWhere);
 router.get("/:id", usuarioValidator.findById(), bilheteController.find);
-
-
+router.get("/busca/:numero",  bilheteController.findByNumber);
 router.put("/:id", verifyJWT, bilheteController.update);
 router.delete("/:id", verifyJWT, bilheteController.remove);
 

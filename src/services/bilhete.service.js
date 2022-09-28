@@ -64,6 +64,16 @@ const find = async function (id) {
   return bilhete;
 };
 
+const findByNumber = async function(sorteioId, where) {
+  const bilhete = await bilheteRepository.findByNumber(sorteioId, where);
+
+  if (!bilhete) {
+    return createError(404, "Bilhete não encontrado");
+  }
+
+  return bilhete;
+};
+
 const update = async function (bilhete, id) {
   const bilheteExists = await bilheteRepository.find(id);
 
@@ -93,6 +103,7 @@ module.exports = {
   list,
   listWhere,
   find,
+  findByNumber,
   update,
   remove,
 };

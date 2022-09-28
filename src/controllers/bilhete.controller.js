@@ -69,6 +69,28 @@ const find = async function (req, res, next) {
   }
 };
 
+const findByNumber = async function (req, res, next) {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      throw createError(422, { errors: errors.array() });
+    }
+
+    const sorteioId = req.query.sorteioId;
+
+    const response = await bilheteService.findByNumber(sorteioId, req.params.numero);
+
+    if (response && response.message) {
+      throw response;
+    }
+
+    res.send({ success: true, bilhete: response });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const update = async function (req, res, next) {
   try {
     const errors = validationResult(req);
@@ -121,6 +143,7 @@ module.exports = {
   list,
   listWhere,
   find,
+  findByNumber,
   update,
   remove,
 };

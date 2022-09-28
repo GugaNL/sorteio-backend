@@ -34,11 +34,11 @@ const find = async function (id) {
 //   return bilhete;
 // };
 
-const findWhere = async function (bilhete) {
+const findByNumber = async function (sorteioId, where) {
   const bilheteEncontrado = await Bilhete.findOne({
     where: {
-      numero: bilhete.numero,
-      sorteioId: bilhete.sorteioId
+      numero: where,
+      sorteioId
     },
   });
 
@@ -66,7 +66,7 @@ module.exports = {
   list,
   listWhere,
   find,
-  findWhere,
+  findByNumber,
   update,
   remove,
   removeBySorteio
