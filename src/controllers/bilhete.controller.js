@@ -100,11 +100,7 @@ const update = async function (req, res, next) {
     }
 
     const response = await bilheteService.update(
-      {
-        numero: req.body.numero,
-        sorteioId: req.body.sorteioId,
-        comprador: req.body.comprador,
-      },
+      req.body,
       req.params.id
     );
 
