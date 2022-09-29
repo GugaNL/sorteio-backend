@@ -11,10 +11,10 @@ const create = async function (bilhete) {
     return createError(409, "Sorteio não encontrado");
   }
 
-  const bilheteExists = await bilheteRepository.findWhere({
-    numero: bilhete.numero,
-    sorteioId: bilhete.sorteioId
-  })
+  const bilheteExists = await bilheteRepository.findByNumber(
+    bilhete.sorteioId,
+    bilhete.numero
+  );
 
   if (bilheteExists) {
     return createError(409, "Bilhete já comprado");
@@ -33,8 +33,11 @@ const create = async function (bilhete) {
   const bilheteCriado = await bilheteRepository.create(bilhete);
 
   const bilhetesVendidos = sorteioExists.bilhetesVendidos + 1;
-  await sorteioRepository.update({bilhetesVendidos: bilhetesVendidos}, bilhete.sorteioId);
-  
+  await sorteioRepository.update(
+    { bilhetesVendidos: bilhetesVendidos },
+    bilhete.sorteioId
+  );
+
   return bilheteCriado;
 };
 
@@ -64,7 +67,7 @@ const find = async function (id) {
   return bilhete;
 };
 
-const findByNumber = async function(sorteioId, where) {
+const findByNumber = async function (sorteioId, where) {
   const bilhete = await bilheteRepository.findByNumber(sorteioId, where);
 
   if (!bilhete) {
