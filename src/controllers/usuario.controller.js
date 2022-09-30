@@ -36,7 +36,7 @@ const login = async function (req, res, next) {
       throw response;
     }
 
-    res.send({ success: true, usuario: response });
+    res.send({ success: true, data: response });
   } catch (error) {
     return next(error);
   }
