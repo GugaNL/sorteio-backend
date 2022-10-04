@@ -1,6 +1,7 @@
 const sorteioService = require("../services/sorteio.service");
 const { validationResult } = require("express-validator");
 const createError = require("http-errors");
+var multer = require("multer");
 
 const create = async function (req, res, next) {
   try {
@@ -8,6 +9,10 @@ const create = async function (req, res, next) {
 
     if (!errors.isEmpty()) {
       throw createError(422, { errors: errors.array() });
+    }
+
+    if (req.file) {
+      req.body.foto = req.file.path;
     }
 
     const response = await sorteioService.create(req.body);
@@ -26,7 +31,7 @@ const list = async function (req, res, next) {
   try {
     const response = await sorteioService.list(req.body);
 
-    res.send({ success: true, sorteios: response});
+    res.send({ success: true, sorteios: response });
   } catch (error) {
     return next(error);
   }
@@ -46,7 +51,7 @@ const find = async function (req, res, next) {
       throw response;
     }
 
-    res.send({ success: true, sorteio: response});
+    res.send({ success: true, sorteio: response });
   } catch (error) {
     return next(error);
   }
@@ -92,10 +97,49 @@ const remove = async function (req, res, next) {
   }
 };
 
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    console.log(req);
+    callback(null, "./resources/uploads");
+  },
+  filename: (req, file, callback) => {
+    console.log(req);
+    // const mimeExtension = {
+    //   "image/jpeg": ".jpeg",
+    //   "image/jpg": ".jpg",
+    //   "image/png": ".png",
+    // };
+    callback(
+      null,
+      Date.now() + '-' + file.originalname
+      //file.originalname + "-" + Date.now() + mimeExtension[file.mimeType]
+    );
+  },
+});
+
+var uploadImage = multer({
+  storage: storage,
+  fileFilter: (req, file, callback) => {
+    if (
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/png"
+    ) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+      req.fileError = 'Formato não válido'
+    }
+  },
+});
+
+
+
 module.exports = {
   create,
   list,
   find,
   update,
-  remove
+  remove,
+  uploadImage
 };

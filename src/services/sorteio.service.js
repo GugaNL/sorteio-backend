@@ -1,11 +1,12 @@
 const sorteioRepository = require("../repositories/sorteio.repository");
-const bilheteRepository = require("../repositories/bilhete.repository")
+const bilheteRepository = require("../repositories/bilhete.repository");
 require("dotenv").config();
 const createError = require("http-errors");
+const fs = require("fs");
 
 const create = async function (sorteio) {
   if (!sorteio.status) {
-    sorteio.status = 'ativo'
+    sorteio.status = "ativo";
   }
   sorteio.bilhetesVendidos = 0;
   const sorteioCriado = await sorteioRepository.create(sorteio);
@@ -65,6 +66,15 @@ const remove = async function (id) {
     await bilheteRepository.removeBySorteio(id);
   }
 
+  if (sorteio.foto) {
+    const filePath = sorteio?.foto.replace(/\\/g, "/");
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        return;
+      }
+    });
+  }
+
   await sorteioRepository.remove(id);
 
   return sorteio;
@@ -76,5 +86,5 @@ module.exports = {
   listWhere,
   find,
   update,
-  remove
+  remove,
 };
