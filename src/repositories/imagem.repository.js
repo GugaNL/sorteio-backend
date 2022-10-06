@@ -15,9 +15,11 @@ const create = async function (imagens = [], sorteioId = 0) {
   return true;
 };
 
-const listWhere = async function (where) {
+const listWhere = async function (sorteioId) {
   const imagens = await Imagem.findAll({
-    where,
+    where: {
+      sorteioId
+    },
   });
 
   return imagens;

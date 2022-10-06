@@ -1,5 +1,6 @@
 const sorteioRepository = require("../repositories/sorteio.repository");
 const bilheteRepository = require("../repositories/bilhete.repository");
+const imagemRepository = require("../repositories/imagem.repository");
 require("dotenv").config();
 const createError = require("http-errors");
 const fs = require("fs");
@@ -71,13 +72,17 @@ const remove = async function (id) {
     await bilheteRepository.removeBySorteio(id);
   }
 
-  if (sorteio.foto) {
-    const filePath = sorteio?.foto.replace(/\\/g, "/");
-    fs.unlink(filePath, (err) => {
-      if (err) {
-        return;
-      }
-    });
+  const imagesToRemove = await imagemRepository.listWhere(id);
+
+  if (imagesToRemove && imagesToRemove.length > 0) {
+    for (let i = 0; i < imagesToRemove.length; i++) {
+      const filePath = imagesToRemove[i]?.path.replace(/\\/g, "/");
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          return;
+        }
+      });
+    }
   }
 
   await sorteioRepository.remove(id);
