@@ -1,11 +1,25 @@
-const { Sorteio } = require("../database/models/index");
-const { Bilhete } = require("../database/models/index");
+const { Sorteio, Imagem, Bilhete } = require("../database/models/index");
 const bilheteRepository = require("./bilhete.repository");
+const imagemRepository = require("./imagem.repository");
 const db = require("../database/models/index");
 
-const create = async function (sorteio) {
-  const sorteioCriado = await Sorteio.create(sorteio);
-  return sorteioCriado;
+const create = async function (sorteio, imagens = []) {
+  const t = await db.sequelize.transaction();
+
+  try {
+    const sorteioCriado = await Sorteio.create(sorteio);
+
+    imagens.length > 0 &&
+      sorteioCriado.id &&
+      (await imagemRepository.create(imagens, sorteioCriado.id));
+
+    await t.commit();
+    return sorteioCriado;
+  } catch (error) {
+    await t.rollback();
+    return error;
+  }
+
   //const t = await db.sequelize.transaction();
   //const bilhetesTotal = sorteio.totalBilhetes;
 
@@ -82,7 +96,16 @@ const update = async function (sorteio, id) {
 // };
 
 const remove = async function (id) {
-  return await Sorteio.destroy({ where: { id } });
+  const t = await db.sequelize.transaction();
+
+  try {
+    await imagemRepository.removeBySorteio(id);
+
+    return await Sorteio.destroy({ where: { id } });
+  } catch (error) {
+    await t.rollback();
+    return error;
+  }
 };
 
 module.exports = {

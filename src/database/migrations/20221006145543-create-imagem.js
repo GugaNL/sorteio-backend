@@ -1,43 +1,28 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('sorteio', {
+    await queryInterface.createTable('imagem', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      titulo: {
+      filename: {
         type: Sequelize.STRING
       },
-      descricao: {
+      path: {
         type: Sequelize.STRING
       },
-      data: {
-        type: Sequelize.DATE
-      },
-      premio: {
+      mimetype: {
         type: Sequelize.STRING
       },
-      ganhador: {
+      sorteioId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'cliente',
+          model: 'sorteio',
           key: 'id'
         }
-      },
-      valorBilhete: {
-        type: Sequelize.DECIMAL(20, 2)
-      },
-      totalBilhetes: {
-        type: Sequelize.INTEGER
-      },
-      bilhetesVendidos: {
-        type: Sequelize.INTEGER
-      },
-      status: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -50,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('sorteio');
+    await queryInterface.dropTable('imagem');
   }
 };

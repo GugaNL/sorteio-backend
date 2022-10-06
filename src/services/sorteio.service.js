@@ -9,7 +9,12 @@ const create = async function (sorteio) {
     sorteio.status = "ativo";
   }
   sorteio.bilhetesVendidos = 0;
-  const sorteioCriado = await sorteioRepository.create(sorteio);
+
+  const arrayImagens = sorteio.imagens || [];
+
+  delete sorteio.imagens;
+
+  const sorteioCriado = await sorteioRepository.create(sorteio, arrayImagens);
   return sorteioCriado;
 };
 

@@ -11,8 +11,9 @@ const create = async function (req, res, next) {
       throw createError(422, { errors: errors.array() });
     }
 
-    if (req.file) {
-      req.body.foto = req.file.path;
+    if (req.files && req.files.length > 0) {
+      const { files = [] } = req;
+      req.body.imagens = files;
     }
 
     const response = await sorteioService.create(req.body);
