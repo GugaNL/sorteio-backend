@@ -1,4 +1,5 @@
 const sorteioService = require("../services/sorteio.service");
+const imagemService = require("../services/imagem.service");
 const { validationResult } = require("express-validator");
 const createError = require("http-errors");
 var multer = require("multer");
@@ -46,13 +47,15 @@ const find = async function (req, res, next) {
       throw createError(422, { errors: errors.array() });
     }
 
-    const response = await sorteioService.find(req.params.id);
+    const responseSorteio = await sorteioService.find(req.params.id);
 
-    if (response && response.message) {
-      throw response;
+    if (responseSorteio && responseSorteio.message) {
+      throw responseSorteio;
     }
 
-    res.send({ success: true, sorteio: response });
+    const responseImagem = await imagemService.listWhere(req.params.id);
+
+    res.send({ success: true, sorteio: responseSorteio, imagens: responseImagem });
   } catch (error) {
     return next(error);
   }
