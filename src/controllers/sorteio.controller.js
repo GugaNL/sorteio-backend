@@ -103,20 +103,12 @@ const remove = async function (req, res, next) {
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    console.log(req);
     callback(null, "./resources/uploads");
   },
   filename: (req, file, callback) => {
-    console.log(req);
-    // const mimeExtension = {
-    //   "image/jpeg": ".jpeg",
-    //   "image/jpg": ".jpg",
-    //   "image/png": ".png",
-    // };
     callback(
       null,
       Date.now() + '-' + file.originalname
-      //file.originalname + "-" + Date.now() + mimeExtension[file.mimeType]
     );
   },
 });
