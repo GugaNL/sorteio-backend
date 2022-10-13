@@ -75,6 +75,11 @@ const update = async function (req, res, next) {
       throw response;
     }
 
+    if (req.files && req.files.length > 0) {
+      const { files = [] } = req;
+      await imagemService.create(files, req.params.id);
+    }
+
     res.send({ success: true, sorteio: response });
   } catch (error) {
     return next(error);

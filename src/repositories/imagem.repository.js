@@ -1,4 +1,5 @@
 const { Imagem } = require("../database/models/index");
+const fs = require("fs");
 
 const create = async function (imagens = [], sorteioId = 0) {
   if (imagens.length > 0) {
@@ -18,7 +19,7 @@ const create = async function (imagens = [], sorteioId = 0) {
 const listWhere = async function (sorteioId) {
   const imagens = await Imagem.findAll({
     where: {
-      sorteioId
+      sorteioId,
     },
   });
 
@@ -38,8 +39,31 @@ const update = async function (imagens, id) {
   });
 };
 
+const updateBySorteio = async function (imagens, sorteioId) {
+  await Imagem.update(imagens, {
+    where: {
+      sorteioId,
+    },
+  });
+};
+
 const removeBySorteio = async function (sorteioId) {
   return await Imagem.destroy({ where: { sorteioId } });
+};
+
+const removeByIds = async function (imagesToRemove) {
+  for (let i = 0; i < imagesToRemove.length; i++) {
+    await Imagem.destroy({ where: { id: imagesToRemove[i]?.id } });
+
+    const filePath = imagesToRemove[i]?.path.replace(/\\/g, "/");
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        return;
+      }
+    });
+  }
+
+  return true;
 };
 
 module.exports = {
@@ -47,5 +71,7 @@ module.exports = {
   listWhere,
   find,
   update,
+  updateBySorteio,
   removeBySorteio,
+  removeByIds,
 };

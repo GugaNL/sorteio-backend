@@ -11,6 +11,7 @@ const usuarioRoute = require('./src/routers/usuario.route');
 const clienteRoute = require('./src/routers/cliente.route');
 const sorteioRoute = require('./src/routers/sorteio.route');
 const bilheteRoute = require('./src/routers/bilhete.route');
+const imagemRoute = require('./src/routers/imagem.route');
 const handleError = require('./src/middlewares/handleError');
 
 app.use(cors());
@@ -20,6 +21,7 @@ app.use('/api/usuario', usuarioRoute);
 app.use('/api/cliente', clienteRoute);
 app.use('/api/sorteio', sorteioRoute);
 app.use('/api/bilhete', bilheteRoute);
+app.use('/api/imagem', imagemRoute);
 app.use(handle404Error);
 app.use(handleError);
 
