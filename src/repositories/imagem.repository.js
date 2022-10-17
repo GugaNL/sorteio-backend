@@ -5,9 +5,11 @@ const create = async function (imagens = [], sorteioId = 0) {
   if (imagens.length > 0) {
     for (let i = 0; i < imagens.length; i++) {
       await Imagem.create({
-        filename: imagens[i]?.filename,
+        //filename: imagens[i]?.filename,
+        filename: imagens[i]?.key,
         mimetype: imagens[i]?.mimetype,
-        path: imagens[i]?.path,
+        path: imagens[i]?.location,
+        //path: imagens[i]?.path,
         sorteioId,
       });
     }
