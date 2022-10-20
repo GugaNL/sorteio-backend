@@ -6,9 +6,9 @@ const create = async function (imagens = [], sorteioId) {
 };
 
 const listWhere = async function (id) {
-  const bilhetesExists = await imagemRepository.listWhere(id) || [];
+  const imagensExists = await imagemRepository.listWhere(id) || [];
 
-  return bilhetesExists;
+  return imagensExists;
 };
 
 const updateBySorteio = async function (imagens, sorteioId) {
