@@ -30,6 +30,10 @@ const create = async function (bilhete) {
     return createError(409, "Comprador não encontrado");
   }
 
+  if (!bilhete.status) {
+    bilhete.status = "comprado";
+  }
+
   const bilheteCriado = await bilheteRepository.create(bilhete);
 
   const bilhetesVendidos = sorteioExists.bilhetesVendidos + 1;
