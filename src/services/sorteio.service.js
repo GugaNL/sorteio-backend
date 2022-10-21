@@ -13,7 +13,7 @@ const create = async function (sorteio) {
 
   const arrayImagens = sorteio.imagens || [];
 
-  delete sorteio.imagens;
+  sorteio.mainImage = arrayImagens.length > 0 ? arrayImagens[0]?.location : "";
 
   const sorteioCriado = await sorteioRepository.create(sorteio, arrayImagens);
   return sorteioCriado;
@@ -50,6 +50,14 @@ const update = async function (sorteio, id) {
 
   if (!sorteioxists) {
     return createError(404, "Sorteio não encontrado");
+  }
+
+  const imagesUrls = await imagemRepository.listWhere(id);
+
+  if (imagesUrls && imagesUrls.length > 0) {
+    sorteio.mainImage = imagesUrls[0]?.path || "";
+  } else {
+    sorteio.mainImage = "";
   }
 
   await sorteioRepository.update(sorteio, id);

@@ -14,6 +14,9 @@ module.exports = {
       descricao: {
         type: Sequelize.STRING
       },
+      mainImage: {
+        type: Sequelize.STRING
+      },
       data: {
         type: Sequelize.DATE
       },

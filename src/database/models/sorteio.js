@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       titulo: DataTypes.STRING,
       descricao: DataTypes.STRING,
+      mainImage: DataTypes.STRING,
       data: DataTypes.DATE,
       premio: DataTypes.STRING,
       valorBilhete: DataTypes.DECIMAL(20, 2),
