@@ -36,7 +36,7 @@ const listWhere = async function (req, res, next) {
   try {
     const parameters = req.query;
     const page = parameters.page ? parseInt(parameters.page) : 1;
-    const limit = parameters.limit ? parseInt(parameters.limit) : 2;
+    const limit = parameters.limit ? parseInt(parameters.limit) : 20;
 
     delete parameters.page;
     delete parameters.limit;
