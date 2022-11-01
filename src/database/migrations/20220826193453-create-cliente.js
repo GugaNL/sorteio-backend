@@ -20,6 +20,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      telefone: {
+        type: Sequelize.STRING
+      },
       senha: {
         type: Sequelize.STRING
       },
