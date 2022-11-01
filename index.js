@@ -2,11 +2,13 @@ require('dotenv').config();
 const express = require("express");
 const bodyPaser = require("body-parser");
 const app = express();
+const appWs = require('./src/websocket/ws');
 const cors = require('cors');
 
-
+//Middlewares
 const handle404Error = require('./src/middlewares/handle404Error');
 
+//Routes
 const usuarioRoute = require('./src/routers/usuario.route');
 const clienteRoute = require('./src/routers/cliente.route');
 const sorteioRoute = require('./src/routers/sorteio.route');
@@ -27,6 +29,9 @@ app.use('/api/imagem', imagemRoute);
 app.use(handle404Error);
 app.use(handleError);
 
-app.listen(process.env.PORT || 5000, () => {
+const server = app.listen(process.env.PORT || 5000, () => {
   console.log("rodando na porta 5000");
 });
+
+//Caso esteja rodando em canal HTTPS deve-se usar o protocolo wss:// para funcionar
+appWs(server);

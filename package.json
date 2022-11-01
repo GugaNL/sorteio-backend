@@ -22,7 +22,8 @@
     "multer-s3": "^3.0.1",
     "mysql2": "^2.3.3",
     "nodemon": "2.0.19",
-    "sequelize": "^6.21.4"
+    "sequelize": "^6.21.4",
+    "ws": "^8.10.0"
   },
   "devDependencies": {
     "sequelize-cli": "^6.4.1"
