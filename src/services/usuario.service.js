@@ -1,7 +1,7 @@
 const usuarioRepository = require("../repositories/usuario.repository");
 require("dotenv").config();
 const createError = require("http-errors");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs')
 const { sign } = require("jsonwebtoken");
 
 const create = async function (usuario) {
@@ -13,7 +13,7 @@ const create = async function (usuario) {
     return createError(409, "Usuário já existe");
   }
 
-  usuario.senha = await bcrypt.hash(usuario.senha, ~~process.env.SALT);
+  usuario.senha = await bcrypt.hashSync(usuario.senha, ~~process.env.SALT);
   const usuarioCriado = await usuarioRepository.create(usuario);
   return usuarioCriado;
 };
@@ -66,7 +66,7 @@ const login = async function (usuario) {
     return createError(401, "Usuário inválido");
   }
 
-  const comparePassword = await bcrypt.compare(usuario.senha, userLogin.senha);
+  const comparePassword = await bcrypt.compareSync(usuario.senha, userLogin.senha);
 
   if (!comparePassword) {
     return createError(401, "Usuário inválido");

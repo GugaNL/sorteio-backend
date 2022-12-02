@@ -1,7 +1,7 @@
 const clienteRepository = require("../repositories/cliente.repository");
 const createError = require("http-errors");
 require("dotenv").config();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 
 const create = async function (cliente) {
@@ -13,7 +13,7 @@ const create = async function (cliente) {
     return createError(409, "Essa conta já existe");
   }
 
-  cliente.senha = await bcrypt.hash(cliente.senha, ~~process.env.SALT);
+  cliente.senha = await bcrypt.hashSync(cliente.senha, ~~process.env.SALT);
   const clienteCriado = await clienteRepository.create(cliente);
   return clienteCriado;
 };
@@ -27,7 +27,7 @@ const login = async function (cliente) {
     return createError(401, "Cliente não encontrado");
   }
 
-  const comparePassword = await bcrypt.compare(cliente.senha, clienteLogin.senha);
+  const comparePassword = await bcrypt.compareSync(cliente.senha, clienteLogin.senha);
 
   if (!comparePassword) {
     return createError(401, "Dado(s) inválido(s)");
