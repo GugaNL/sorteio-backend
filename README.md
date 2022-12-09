@@ -6,6 +6,6 @@
 
 ## Utils commands
 
-### Access mysql prompt ```docker exec -it <container_ID> mysql -p```
-### Remove all containers ```docker rm  -f $(docker ps -a -q)```
-### Remove all images ```docker image prune -a```
+* Access mysql prompt ```docker exec -it <container_ID> mysql -p```
+* Remove all containers ```docker rm  -f $(docker ps -a -q)```
+* Remove all images ```docker image prune -a```
