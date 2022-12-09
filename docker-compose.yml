@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  sorteionodejs:
+    image: gustavonunes/app-node-dock-sorteios:latest
+    build: .
+    ports: 
+      - "5000:3000"
+    depends_on:
+      - sorteiosdb
+  sorteiosdb:
+    image: mysql:8.0
+    command: mysqld --user=root
+    restart: always
+    volumes: 
+      - ./mysql-data/db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: megasorteios
+      MYSQL_USER: gustavo
+      MYSQL_PASSWORD: 99621510
+      MYSQL_ROOT_PASSWORD: 99621510
+    ports:
+      - "3307:3306"
+    expose:
+      - "3307"
+#  dump:
+#    build: mysql-dump/
+#    volumes:
+#      - ./mysql-dump/:/var/db/
+#    command: sh -c "sleep 20 && /usr/bin/mysql -h mysql -uroot -proot < /var/db/sorteiosdump.sql"
+#    depends_on:
+#      - sorteiosdb
