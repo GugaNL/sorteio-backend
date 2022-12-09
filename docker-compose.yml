@@ -3,6 +3,7 @@ version: "3"
 services:
   sorteionodejs:
     image: gustavonunes/app-node-dock-sorteios:latest
+    command: node index.js
     build: .
     ports: 
       - "5000:3000"
