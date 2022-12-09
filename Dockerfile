@@ -5,7 +5,7 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 
 #install mysql
-RUN apk add --no-cache mysql-client
+#RUN apk add --no-cache mysql-client
 
 #Copy package.json and package-lock.json if exist to the workdir created previously
 COPY package*.json ./
