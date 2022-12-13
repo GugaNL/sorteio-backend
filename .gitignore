@@ -103,3 +103,6 @@ dist
 .tern-port
 
 /.vscode
+
+# Mysql folder for using in the docker
+mysql-data
