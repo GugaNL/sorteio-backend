@@ -2,11 +2,11 @@ version: "3"
 
 services:
   sorteionodejs:
-    image: gustavonunes/app-node-dock-sorteios:latest
+    image: guganl/backend-sorteios
     command: node index.js
     build: .
     ports: 
-      - "5000:3000"
+      - "5000:5000"
     depends_on:
       - sorteiosdb
   sorteiosdb:
