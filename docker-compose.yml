@@ -2,14 +2,15 @@ version: "3"
 
 services:
   sorteionodejs:
+    container_name: container-sorteiosnodejs
     image: guganl/backend-sorteios
-    command: node index.js
     build: .
     ports: 
       - "5000:5000"
     depends_on:
       - sorteiosdb
   sorteiosdb:
+    container_name: container-sorteiosdb
     image: mysql:8.0
     command: mysqld --user=root
     restart: always

@@ -8,5 +8,7 @@
 * ```source sorteiosdump.sql``` import the sql file to mysql
 
 ## Utils commands
-* Remove all containers ```docker rm  -f $(docker ps -a -q)```
+* Stop and remove all containers ```docker-compose down```
+* Remove all containers by force ```docker rm  -f $(docker ps -a -q)```
 * Remove all images ```docker image prune -a```
+* build and up container ```docker-compose up --build```
