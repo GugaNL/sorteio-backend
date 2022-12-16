@@ -21,6 +21,14 @@ jobs:
       - run: docker-compose build
       - run: docker-compose up -d
       - run: echo "Deploy in test environment"
+      - name: Docker Hub login
+        env:
+          DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+      - name: Push to Docker Hub
+        run: docker push guganl/backend-sorteios
+        run: docker push mysql:8.0
   deploy-production:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-20.04
