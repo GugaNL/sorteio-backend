@@ -26,8 +26,9 @@ jobs:
           DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
         run: docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-      - name: Push to Docker Hub
+      - name: Push to Docker Hub backend image
         run: docker push guganl/backend-sorteios
+      - name: Push to Docker Hub mysql image
         run: docker push mysql:8.0
   deploy-production:
     if: github.ref == 'refs/heads/main'
