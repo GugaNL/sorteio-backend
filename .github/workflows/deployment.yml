@@ -42,4 +42,12 @@ jobs:
           node-version: 16.x
       - run: docker-compose build
       - run: docker-compose up -d
-      - run: echo "Deploy in production environment"
+      - name: Docker Hub login
+        env:
+          DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+      - name: Push to Docker Hub backend image
+        run: docker push guganl/backend-sorteios
+      #- name: Push to Docker Hub mysql image
+      #  run: docker push mysql:8.0

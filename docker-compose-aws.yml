@@ -1,0 +1,32 @@
+#Copy all and paste in a file created named docker-compose.yml in ec2
+version: "3"
+
+services:
+  sorteionodejs:
+    container_name: container-sorteiosnodejs
+    image: guganl/backend-sorteios
+    ports: 
+      - "5000:5000"
+    depends_on:
+      - sorteiosdb
+  sorteiosdb:
+    container_name: container-sorteiosdb
+    image: mysql:8.0
+    command: mysqld --user=root
+    restart: always
+    volumes: 
+      - ./mysql-data/db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: megasorteios
+      MYSQL_USER: gustavo
+      MYSQL_PASSWORD: 99621510
+      MYSQL_ROOT_PASSWORD: 99621510
+    ports:
+      - "3307:3306"
+    expose:
+      - "3307"
+  sorteiofrontend:
+    container_name: container-sorteiosfront
+    image: guganl/frontend-sorteios
+    ports: 
+      - "3000:3000"
