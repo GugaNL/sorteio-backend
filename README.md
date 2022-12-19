@@ -3,7 +3,7 @@
 * ```docker-compose build``` for build dockerfile
 * ```docker-compose up -d``` for run docker services
 * ```docker cp  ./mysql-dump/sorteiosdump.sql <container_ID>:/``` copy the SQL dump file into the container
-* ```docker exec -it <container_ID> mysql -p``` access mysql prompt
+* ```docker exec -it b28aba58fb73 mysql -p``` access mysql prompt
 * ```use megasorteios```
 * ```source sorteiosdump.sql``` import the sql file to mysql
 
@@ -18,5 +18,6 @@
 * ````sudo apt-get update```
 * ```sudo apt-get install -y docker.io``` install docker
 * ```sudo usermod -aG docker ${USER}```
-* ```curl -SL https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose``` install docker compose
+* ```sudo curl -SL https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose``` install docker compose
 * ```sudo chmod +x /usr/local/bin/docker-compose```
+* ```vim docker-compose.yml``` to create a docker compose file, then paste the contain of docker-compose-aws.yml in this project folder > type ESC, :wq

@@ -32,7 +32,7 @@ app.use(handle404Error);
 app.use(handleError);
 
 const server = app.listen(process.env.PORT || 5000, () => {
-  console.log("rodando");
+  console.log("node server is running");
 });
 
 //Caso esteja rodando em canal HTTPS deve-se usar o protocolo wss:// para funcionar

@@ -22,6 +22,6 @@ module.exports = (server) => {
 
   wss.on("connection", onConnection);
 
-  console.log(`Web Socket Server esta rodando!`);
+  console.log(`Web Socket Server running`);
   return wss;
 };
