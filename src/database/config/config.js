@@ -1,10 +1,23 @@
 require('dotenv').config({ path: __dirname+'/./../../../.env'});
 
+// module.exports = {
+//   username: process.env.DATABASE_USER,
+//   password: process.env.PASSWORD,
+//   database: process.env.DATABASE,
+//   host: process.env.HOST,
+//   dialect: "mysql",
+//   logging: false,
+//   define: {
+//     timestamps: true,
+//   },
+//   timezone: "-03:00",
+// };
+
 module.exports = {
-  username: process.env.DATABASE_USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-  host: process.env.HOST,
+  username: "root",
+  password: "99621510",
+  database: "megasorteios",
+  host: "http://142.93.194.174",
   dialect: "mysql",
   logging: false,
   define: {
