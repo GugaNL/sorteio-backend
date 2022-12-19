@@ -5,6 +5,7 @@ services:
   sorteionodejs:
     container_name: container-sorteiosnodejs
     image: guganl/backend-sorteios
+    restart: unless-stopped
     ports: 
       - "5000:5000"
     depends_on:
