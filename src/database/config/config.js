@@ -17,7 +17,8 @@ module.exports = {
   username: "root",
   password: "99621510",
   database: "megasorteios",
-  host: "http://142.93.194.174",
+  host: "142.93.194.174",
+  port: "3307",
   dialect: "mysql",
   logging: false,
   define: {
