@@ -31,3 +31,10 @@ services:
     image: guganl/frontend-sorteios
     ports: 
       - "3000:3000"
+  sorteiofrontendclient:
+    container_name: container-sorteiosfront-client
+    image: guganl/frontend-sorteios-client
+    ports: 
+      - "80:80"
+    depends_on:
+      - sorteiofrontend
