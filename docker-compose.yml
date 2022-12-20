@@ -3,7 +3,7 @@ version: "3"
 services:
   sorteionodejs:
     container_name: container-sorteiosnodejs
-    image: guganl/backend-sorteios
+    image: guganl/backend-prizedraw
     build: .
     ports: 
       - "5000:5000"
